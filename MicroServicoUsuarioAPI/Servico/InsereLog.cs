@@ -16,7 +16,7 @@ namespace MicroServicoUsuarioAPI.Servico
             {
                 var json = JsonConvert.SerializeObject(log);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var result = await client.PostAsync("https://localhost:44320/api/Logs", content);
+                var result = await client.PostAsync("https://localhost:44320/api/Log", content);
                 result.EnsureSuccessStatusCode();
                 if (result.IsSuccessStatusCode)
                     return "ok";
