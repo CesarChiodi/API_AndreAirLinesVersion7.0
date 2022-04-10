@@ -1,5 +1,7 @@
 |-- Esboco Projeto de APIs;
+
 |-- Trabalho com micro servicos ("SWAGGER");
+
 |-- (#Bancos de dados utilizados: SQL / MONGo.db);
 
 |-- BASEADO no modelo ABAIXO:
