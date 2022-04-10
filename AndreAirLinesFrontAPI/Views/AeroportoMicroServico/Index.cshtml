@@ -1,0 +1,49 @@
+﻿@model IEnumerable<AndreAirLinesFrontAPI.Models.AeroportoMicroServico>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAeroporto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Iata)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoginUsuario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAeroporto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Iata)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoginUsuario)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>
