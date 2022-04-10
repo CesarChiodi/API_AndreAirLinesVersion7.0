@@ -13,7 +13,7 @@ namespace MicroServicoUsuarioAPI.Servico
             HttpClient client = new HttpClient();
             try
             {
-                HttpResponseMessage resposta = await client.GetAsync("https://localhost:44372/api/User/" + login);
+                HttpResponseMessage resposta = await client.GetAsync("https://localhost:44320/api/User/" + login);
                 resposta.EnsureSuccessStatusCode();
                 string responseBody = await resposta.Content.ReadAsStringAsync();
                 var user = JsonConvert.DeserializeObject<Usuario>(responseBody);
