@@ -43,8 +43,20 @@ namespace MicroServicoUsuarioAPI.Servico
             }
         }
 
-        public Usuario Create(Usuario usuario)
+        public async Task <Usuario> Create(Usuario usuario)
         {
+            //var usuarioUsuario = await ServicoVerificaUsuario.BuscaUsuario(usuario.LoginUsuario);
+
+            //if (usuarioUsuario.Setor != "ADM")
+            //{
+            //    return null;
+            //}
+
+            //if (usuarioUsuario.LoginUsuario == null)
+            //{
+            //    return null;
+            //}
+
             var encontraPassageiro = BuscaCpf(usuario.Cpf);
             if (encontraPassageiro == null)
             {

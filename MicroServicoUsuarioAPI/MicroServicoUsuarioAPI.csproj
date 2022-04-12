@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CorreiosAPI\ValidaCEP.csproj" />
     <ProjectReference Include="..\..\Modelo\Modelo.csproj" />
+    <ProjectReference Include="..\..\ValidaCPF\ValidaCPF.csproj" />
   </ItemGroup>
 
 </Project>
