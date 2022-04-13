@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using CorreiosAPI;
 using MicroServicoUsuarioAPI.Servico;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Modelo;
+using ValidaCEP;
 using ValidaCPF;
 
 namespace MicroServicoUsuarioAPI.Controllers
@@ -26,9 +26,9 @@ namespace MicroServicoUsuarioAPI.Controllers
 
 
         [HttpGet("{login}", Name = "GetUsuario")]
-        public ActionResult<Usuario> Get(string login)
+        public ActionResult<Usuario> GetLogin(string login)
         {
-            var usuario = _servicoUsuario.Get(login);
+            var usuario = _servicoUsuario.GetLogin(login);
 
             if (usuario == null)
             {
@@ -82,7 +82,7 @@ namespace MicroServicoUsuarioAPI.Controllers
         [HttpPut("{login}")]
         public IActionResult Update(string login, Usuario usuarioModificacao)
         {
-            var usuario = _servicoUsuario.Get(login);
+            var usuario = _servicoUsuario.GetLogin(login);
 
             if (usuario == null)
             {
@@ -97,7 +97,7 @@ namespace MicroServicoUsuarioAPI.Controllers
         [HttpDelete("{login}")]
         public IActionResult Delete(string login)
         {
-            var usuario = _servicoUsuario.Get(login);
+            var usuario = _servicoUsuario.GetLogin(login);
 
             if (usuario == null)
             {

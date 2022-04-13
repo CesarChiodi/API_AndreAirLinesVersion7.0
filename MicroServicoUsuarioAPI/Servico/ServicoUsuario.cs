@@ -22,9 +22,10 @@ namespace MicroServicoUsuarioAPI.Servico
         public List<Usuario> Get() =>
             _usuario.Find(usuario => true).ToList();
 
-        public Usuario Get(string id) =>
-            _usuario.Find<Usuario>(usuario => usuario.Id == id).FirstOrDefault();
+        public Usuario GetLogin(string login) =>
+            _usuario.Find<Usuario>(usuario => usuario.Login == login).FirstOrDefault();
 
+        
 
         public Usuario BuscaCpf(string cpf)
         {
