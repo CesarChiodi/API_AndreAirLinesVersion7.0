@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Modelo\Modelo.csproj" />
     <ProjectReference Include="..\IngestaoDadosAeroporto\IngestaoDadosAeroporto.csproj" />
   </ItemGroup>
 
