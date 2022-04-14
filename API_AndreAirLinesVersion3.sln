@@ -35,9 +35,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServicoAeroportoAPI", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServicoAeronaveAPI", "MicroServicoAeronaveAPI\MicroServicoAeronaveAPI.csproj", "{2F946BB1-DA3A-4C3E-808E-82F42505AE37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterceptaMensagens", "InterceptaMensagens\InterceptaMensagens.csproj", "{36FE7FF0-422C-4DCC-BD12-E46CE08FE2A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterceptaMensagens", "InterceptaMensagens\InterceptaMensagens.csproj", "{36FE7FF0-422C-4DCC-BD12-E46CE08FE2A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiAndreAirlinesMongo", "ApiAndreAirlinesMongo\ApiAndreAirlinesMongo.csproj", "{39B9EF52-BF55-4C51-9E7A-823D6475EF2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiAndreAirlinesMongo", "ApiAndreAirlinesMongo\ApiAndreAirlinesMongo.csproj", "{39B9EF52-BF55-4C51-9E7A-823D6475EF2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteUnitarioPassagem", "TesteUnitarioPassagem\TesteUnitarioPassagem.csproj", "{D2F1EBDE-4156-4599-A072-B8A1C5CC4EDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteUnitarioUsuario", "TesteUnitarioUsuario\TesteUnitarioUsuario.csproj", "{6316B2A0-D46D-46BA-8F7B-FF70953A1D64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +121,14 @@ Global
 		{39B9EF52-BF55-4C51-9E7A-823D6475EF2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39B9EF52-BF55-4C51-9E7A-823D6475EF2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39B9EF52-BF55-4C51-9E7A-823D6475EF2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2F1EBDE-4156-4599-A072-B8A1C5CC4EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2F1EBDE-4156-4599-A072-B8A1C5CC4EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2F1EBDE-4156-4599-A072-B8A1C5CC4EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2F1EBDE-4156-4599-A072-B8A1C5CC4EDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6316B2A0-D46D-46BA-8F7B-FF70953A1D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6316B2A0-D46D-46BA-8F7B-FF70953A1D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6316B2A0-D46D-46BA-8F7B-FF70953A1D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6316B2A0-D46D-46BA-8F7B-FF70953A1D64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
