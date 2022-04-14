@@ -79,7 +79,7 @@ namespace MicroServicoAeroportoAPI.Controllers
         }
 
         [HttpDelete("{id:length(24)}")]
-        public IActionResult Delete(string idAeroporto, Aeroporto aeroportoModificacao, Usuario usuario)
+        public IActionResult Delete(string idAeroporto, ReferenciaDeletar deletar)
         {
             var aeroporto = _aeroporto.GetLogin(idAeroporto);
 
@@ -88,7 +88,7 @@ namespace MicroServicoAeroportoAPI.Controllers
                 return NotFound();
             }
 
-            _aeroporto.Remover(aeroporto.IdAeroporto, aeroportoModificacao, usuario);
+            _aeroporto.Remover(aeroporto.IdAeroporto, deletar.Aeroporto, deletar.Usuario);
 
             return NoContent();
         }

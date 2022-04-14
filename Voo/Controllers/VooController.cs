@@ -69,7 +69,7 @@ namespace MicroServicoVooAPI.Controllers
         }
 
         [HttpDelete("{id:length(24)}")]
-        public IActionResult Delete(string idPrecoBase, Voo vooModificacao, Usuario usuario)
+        public IActionResult Delete(string idPrecoBase, ReferenciaDeletar deletar)
         {
             var voo = _voo.Get(idPrecoBase);
 
@@ -78,7 +78,7 @@ namespace MicroServicoVooAPI.Controllers
                 return NotFound();
             }
 
-            _voo.Remover(voo.Id, vooModificacao, usuario);
+            _voo.Remover(voo.Id, deletar.Voo, deletar.Usuario);
 
             return NoContent();
 

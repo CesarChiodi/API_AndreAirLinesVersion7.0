@@ -25,7 +25,7 @@ namespace MicroServicoUsuarioAPI.Servico
         public Usuario GetLogin(string login) =>
             _usuario.Find<Usuario>(usuario => usuario.Login == login).FirstOrDefault();
 
-        
+
 
         public Usuario BuscaCpf(string cpf)
         {
@@ -44,67 +44,131 @@ namespace MicroServicoUsuarioAPI.Servico
             }
         }
 
-        public async Task <Usuario> Create(Usuario usuario)
+        public async Task<Usuario> Create(Usuario usuario)
         {
-            //var usuarioUsuario = await ServicoVerificaUsuario.BuscaUsuario(usuario.LoginUsuario);
+            var encontraUsuario = BuscaCpf(usuario.Cpf);
+            var usuarioUsuario = await ServicoVerificaUsuario.BuscaUsuario(usuario.LoginUsuario);
 
-            //if (usuarioUsuario.Setor != "ADM")
-            //{
-            //    return null;
-            //}
+            if (usuarioUsuario == null)
+            {
+                return null;
+            }
+            if (usuarioUsuario.Login != "ADM")
+            {
+                return null;
+            }
 
-            //if (usuarioUsuario.LoginUsuario == null)
-            //{
-            //    return null;
-            //}
+            if (usuario.LoginUsuario == null)
+            {
+                return null;
+            }
 
-            var encontraPassageiro = BuscaCpf(usuario.Cpf);
-            if (encontraPassageiro == null)
+            if (usuarioUsuario == null)
             {
                 _usuario.InsertOne(usuario);
+
+                Log log = new();
+                log.Usuario = usuarioUsuario;
+                log.EntidadeAntes = "";
+                log.EntidadeDepois = JsonConvert.SerializeObject(encontraUsuario);
+                log.Operacao = "create";
+                log.Data = DateTime.Now.Date;
+
+                var verifica = await InsereLog.InsereLogUsuario(log);
+
+                if (verifica == "ok")
+                {
+                    _usuario.DeleteOne(aeronaveMudanca => aeronaveMudanca.Id == usuario.Id);
+
+                    return usuario;
+                }
+
                 return usuario;
             }
+
             return null;
         }
 
-        /*public async Task<Usuario> Create(Usuario usuario)
+
+
+        public async Task<Usuario> Atualizar(string id, Usuario usuarioMudanca)
         {
-            var usuarioLogin = GetLoginUsuario(usuario.LoginUsuario);
+            var encontraUsuario = BuscaCpf(usuarioMudanca.Cpf);
+            var usuarioUsuario = await ServicoVerificaUsuario.BuscaUsuario(usuarioMudanca.LoginUsuario);
 
-            if (usuarioLogin.Setor != "ADM")
+            if (usuarioUsuario == null)
             {
-                return usuario;
+                return null;
+            }
+            if (usuarioUsuario.Login != "ADM")
+            {
+                return null;
             }
 
-            var searchUser = BuscaCpf(usuario.Cpf);
-
-            if (searchUser != null)
+            if (usuarioMudanca.LoginUsuario == null)
             {
-                return usuario;
+                return null;
             }
 
-            _usuario.InsertOne(usuario);
+            _usuario.ReplaceOne(usuario => usuario.Id == id, usuarioMudanca);
 
             Log log = new();
-
-            log.Usuario = usuario;
+            log.Usuario = usuarioUsuario;
             log.EntidadeAntes = "";
-            log.EntidadeDepois = JsonConvert.SerializeObject(usuario);
+            log.EntidadeDepois = JsonConvert.SerializeObject(encontraUsuario);
             log.Operacao = "create";
             log.Data = DateTime.Now.Date;
 
-            var returnMsg = InsereLog.InsertLog(log);
+            var verifica = await InsereLog.InsereLogUsuario(log);
 
-            return usuario;
-        }*/
+            if (verifica == "ok")
+            {
+                _usuario.DeleteOne(aeronaveMudanca => aeronaveMudanca.Id == usuarioMudanca.Id);
 
-        public void Atualizar(string id, Usuario usuarioMudanca) =>
-            _usuario.ReplaceOne(usuario => usuario.Id == id, usuarioMudanca);
+                return usuarioMudanca;
+            }
+
+            return usuarioMudanca;
+        }
 
         public void Remover(Usuario usuarioMudanca) =>
             _usuario.DeleteOne(usuario => usuario.Id == usuarioMudanca.Id);
 
-        public void Remover(string id) =>
-            _usuario.DeleteOne(usuario => usuario.Id == id);
+        public async Task<string> Remover(string id, Usuario usuarioMudanca)
+        {
+            var encontraUsuario = BuscaCpf(usuarioMudanca.Cpf);
+            var usuarioUsuario = await ServicoVerificaUsuario.BuscaUsuario(usuarioMudanca.LoginUsuario);
+
+            if (usuarioUsuario == null)
+            {
+                return null;
+            }
+            if (usuarioUsuario.Login != "ADM")
+            {
+                return null;
+            }
+
+            if (usuarioMudanca.LoginUsuario == null)
+            {
+                return null;
+            }
+            _usuario.ReplaceOne(usuario => usuario.Id == id, usuarioMudanca);
+
+            Log log = new();
+            log.Usuario = usuarioMudanca;
+            log.EntidadeAntes = JsonConvert.SerializeObject(encontraUsuario);
+            log.EntidadeDepois = "";
+            log.Operacao = "remover";
+            log.Data = DateTime.Now.Date;
+
+            var verifica = await InsereLog.InsereLogUsuario(log);
+
+            if (verifica == "ok")
+            {
+                _usuario.InsertOne(encontraUsuario);
+            }
+
+            return verifica;
+        }
     }
 }

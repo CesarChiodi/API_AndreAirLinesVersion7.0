@@ -7,10 +7,12 @@
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.15.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CorreiosAPI\ValidaCEP.csproj" />
+    <ProjectReference Include="..\MicroServicoAeronaveAPI\MicroServicoAeronaveAPI.csproj" />
     <ProjectReference Include="..\Modelo\Modelo.csproj" />
   </ItemGroup>
 

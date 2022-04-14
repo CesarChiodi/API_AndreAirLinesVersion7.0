@@ -67,7 +67,7 @@ namespace MicroServicoPassagemAereaAPI.Controllers
         }
 
         [HttpDelete("{id:length(24)}")]
-        public IActionResult Delete(string idPassagem, PassagemAerea passagemModificacao, Usuario usuario)
+        public IActionResult Delete(string idPassagem, ReferenciaDeletar deletar)
         {
             var passagem = _passagem.Get(idPassagem);
 
@@ -76,7 +76,7 @@ namespace MicroServicoPassagemAereaAPI.Controllers
                 return NotFound();
             }
 
-            _passagem.Remover(passagem.Id, passagemModificacao, usuario);
+            _passagem.Remover(passagem.Id, deletar.PassagemAerea, deletar.Usuario);
 
             return NoContent();
         }

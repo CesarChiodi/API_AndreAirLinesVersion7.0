@@ -95,7 +95,7 @@ namespace MicroServicoUsuarioAPI.Controllers
         }
 
         [HttpDelete("{login}")]
-        public IActionResult Delete(string login)
+        public IActionResult Delete(string login, Usuario usuarioModificacao)
         {
             var usuario = _servicoUsuario.GetLogin(login);
 
@@ -104,7 +104,7 @@ namespace MicroServicoUsuarioAPI.Controllers
                 return NotFound();
             }
 
-            _servicoUsuario.Remover(usuario.Login);
+            _servicoUsuario.Remover(usuario.Login, usuarioModificacao);
 
             return NoContent();
         }

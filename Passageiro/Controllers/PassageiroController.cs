@@ -85,7 +85,7 @@ namespace MicroServicoPassageiroAPI.Controllers
         }
 
         [HttpDelete("{id:length(24)}")]
-        public IActionResult Delete(string idPassageiro, Passageiro passageiroModificacao, Usuario usuario)
+        public IActionResult Delete(string idPassageiro, ReferenciaDeletar deletar)
         {
             var passageiro = _passageiro.Get(idPassageiro);
 
@@ -94,7 +94,7 @@ namespace MicroServicoPassageiroAPI.Controllers
                 return NotFound();
             }
 
-            _passageiro.Remover(passageiro.Id, passageiroModificacao, usuario);
+            _passageiro.Remover(passageiro.Id, deletar.Passageiro, deletar.Usuario);
 
             return NoContent();
         }

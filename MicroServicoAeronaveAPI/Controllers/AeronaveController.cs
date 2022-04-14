@@ -48,7 +48,10 @@ namespace MicroServicoAeronaveAPI.Controllers
 
             // Verifica se o usuário existe
             if (usuario == null)
-                return NotFound(new { message = "Usuário ou senha inválidos" });
+                return NotFound(new { message = "Usuário inválido" });
+
+            else if (usuario.Senha != model.Senha)
+                return NotFound(new { message = "Senha inválida" });
 
             // Gera o Token
             var token = ServicoToken1.GenerateToken(usuario);
@@ -59,7 +62,7 @@ namespace MicroServicoAeronaveAPI.Controllers
             // Retorna os dados
             return new
             {
-                user = usuario,
+                usuario = usuario,
                 token = token
             };
         }
@@ -97,7 +100,7 @@ namespace MicroServicoAeronaveAPI.Controllers
         }
 
         [HttpDelete("{id:length(24)}")]
-        public IActionResult Delete(string idAeronave, Aeronave aeronaveModificacao, Usuario usuario)
+        public IActionResult Delete(string idAeronave, ReferenciaDeletar deletar)
         {
             var aeronave = _aeronave.Get(idAeronave);
 
@@ -106,7 +109,7 @@ namespace MicroServicoAeronaveAPI.Controllers
                 return NotFound();
             }
 
-            _aeronave.Remover(aeronave.IdAeronave, aeronaveModificacao, usuario);
+            _aeronave.Remover(aeronave.IdAeronave, deletar.Aeronave, deletar.Usuario);
 
             return NoContent();
         }

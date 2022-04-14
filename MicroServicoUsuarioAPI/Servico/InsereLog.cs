@@ -8,7 +8,7 @@ namespace MicroServicoUsuarioAPI.Servico
 {
     public class InsereLog
     {
-        public static async Task<string> InsertLog(Log log)
+        public static async Task<string> InsereLogUsuario(Log log)
         {
             HttpClient client = new HttpClient();
 

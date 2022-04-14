@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using MicroServicoLog.Servico;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Modelo;
+using Newtonsoft.Json;
+using RabbitMQ.Client;
 
 namespace MicroServicoLog.Controllers
 {
@@ -10,74 +13,83 @@ namespace MicroServicoLog.Controllers
     [ApiController]
     public class LogController : ControllerBase
     {
-        private readonly ServicoLog _log;
+        private readonly ConnectionFactory _factory;
+        private const string QUEUE_NAME = "mensagem micro servico";
 
-        public LogController(ServicoLog logService)
+        public LogController()
         {
-            _log = logService;
-        }
-
-        [HttpGet]
-        public ActionResult<List<Log>> Get() =>
-            _log.Get();
-
-
-        [HttpGet("{id:length(24)}", Name = "GetLog")]
-        public ActionResult<Log> Get(string idLog)
-        {
-            var log = _log.Get(idLog);
-
-            if (log == null)
+            _factory = new ConnectionFactory
             {
-                return NotFound();
-            }
-
-            return log;
+                HostName = "localhost"
+            };
         }
 
         [HttpPost]
-        public ActionResult<Log> Create(Log log)
+        public IActionResult PostMessage([FromBody] Log message)
         {
-            //if (log.NomeLog == null)
-            //{
-            //    return BadRequest("Api Fora do ar ");
-            //}
-            if (_log.Create(log) == null)
+            using (var connection = _factory.CreateConnection())
             {
-                return BadRequest("Log já Cadastrada! Tente uma nova Requisicao");
+                using (var channel = connection.CreateModel())
+                {
+
+                    channel.QueueDeclare(
+                        queue: QUEUE_NAME,
+                        durable: false,
+                        exclusive: false,
+                        autoDelete: false,
+                        arguments: null
+                        );
+
+                    var stringfieldMessage = JsonConvert.SerializeObject(message);
+                    var bytesMessage = Encoding.UTF8.GetBytes(stringfieldMessage);
+
+                    channel.BasicPublish(
+                        exchange: "",
+                        routingKey: QUEUE_NAME,
+                        basicProperties: null,
+                        body: bytesMessage
+                        );
+                }
             }
-            return CreatedAtRoute("GetLog", new { id = log.IdLog }, log);
+            return Accepted();
         }
 
-        [HttpPut("{id:length(24)}")]
 
-        public IActionResult Update(string idLog, Log logModificacao)
-        {
-            var log = _log.Get(idLog);
 
-            if (log == null)
-            {
-                return NotFound();
-            }
 
-            _log.Atualizar(idLog, logModificacao);
 
-            return NoContent();
-        }
 
-        [HttpDelete("{id:length(24)}")]
-        public IActionResult Delete(string idLog)
-        {
-            var log = _log.Get(idLog);
 
-            if (log == null)
-            {
-                return NotFound();
-            }
+        //[HttpPut("{id:length(24)}")]
 
-            _log.Remover(log.IdLog);
+        //public IActionResult Update(string idLog, Log logModificacao)
+        //{
+        //    var log = _log.Get(idLog);
 
-            return NoContent();
-        }
+        //    if (log == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    _log.Atualizar(idLog, logModificacao);
+
+        //    return NoContent();
+        //}
+
+        //[HttpDelete("{id:length(24)}")]
+        //public IActionResult Delete(string idLog)
+        //{
+        //    var log = _log.Get(idLog);
+
+        //    if (log == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    _log.Remover(log.IdLog);
+
+        //    return NoContent();
+        //}
+
     }
 }
