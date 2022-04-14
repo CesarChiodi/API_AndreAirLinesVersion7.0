@@ -1,8 +1,10 @@
-|-- Esboco Projeto de APIs.
+|-- Projeto de APIs AndreAirLines.
 
-|-- Trabalho com micro servicos ("SWAGGER");
+|-- Trabalho com micro servicos ("SWAGGER" / "POSTMAN");
 
 |-- (#Bancos de dados utilizados: SQL / MONGo.db);
+
+|-- Teste de Performance (DAPPER vs E.FRAMEWORK)
 
 |-- .JWT;
 
