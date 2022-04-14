@@ -6,6 +6,8 @@
 
 |-- .JWT;
 
+|-- .RabbitMQ;
+
 |-- BASEADO no modelo ABAIXO:
 
 |-- # API_AndreAirLinesVersion4[Atividade-AndreAirlines4.0.pdf](https://github.com/CesarChiodi/API_AndreAirLinesVersion4/files/8460113/Atividade-AndreAirlines4.0.pdf)
