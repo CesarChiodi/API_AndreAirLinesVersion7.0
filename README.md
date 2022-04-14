@@ -8,15 +8,14 @@
 
 |-- .RabbitMQ;
 
+|-- Testagem unitaria;
+
 |-- BASEADO no modelo ABAIXO:
 
 |-- # API_AndreAirLines: [Atividade-AndreAirlines7.0.pdf](https://github.com/CesarChiodi/API_AndreAirLinesVersion7.0/files/8485572/Atividade-AndreAirlines7.0.pdf)
 
-
 |-- [Exercicio-Dapper.pdf](https://github.com/CesarChiodi/API_AndreAirLinesVersion4/files/8460121/Exercicio-Dapper.pdf)
 
-
-
-|-- automatizacao de testagem ainda nao feita
+|-- Testagem unitaria quase completa, Falta a parte do delete.
 
 
