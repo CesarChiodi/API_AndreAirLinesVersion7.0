@@ -8,7 +8,7 @@
 
 |-- .RabbitMQ;
 
-|-- Testagem unitaria;
+|-- Testagem unitaria (usuario, passagem);
 
 |-- BASEADO no modelo ABAIXO:
 
@@ -16,6 +16,6 @@
 
 |-- [Exercicio-Dapper.pdf](https://github.com/CesarChiodi/API_AndreAirLinesVersion4/files/8460121/Exercicio-Dapper.pdf)
 
-|-- Testagem unitaria quase completa, Falta a parte do delete.
+
 
 
