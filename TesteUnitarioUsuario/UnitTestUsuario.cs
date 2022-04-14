@@ -8,7 +8,7 @@ using Xunit;
 
 namespace TesteUnitarioUsuario
 {
-    public class UnitTest1
+    public class UnitTestUsuario
     {
         private ServicoUsuario _usuario;
         public ServicoUsuario InitializeDataBase()
@@ -45,8 +45,14 @@ namespace TesteUnitarioUsuario
         [Fact]
         public void Delete()
         {
+            _usuario = InitializeDataBase();
+            var usuario = _usuario.GetLogin("ADM");
 
-            
+            _usuario.Remover(usuario);
+
+            usuario = _usuario.GetLogin("ADM");
+
+            Assert.Null(usuario);
         }
 
         [Fact]

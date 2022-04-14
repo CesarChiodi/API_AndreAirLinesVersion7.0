@@ -46,10 +46,14 @@ namespace TesteUnitarioPassagem
         public void Delete()
         {
 
-            //_passagem = InitializeDataBase();
-            //if(_passagem.Remover(_passagem.Get("6258082a8b81c01bffe7d99e")) == "ok")
+            _passagem = InitializeDataBase();
+            var passagem = _passagem.Get("6258082a8b81c01bffe7d99e");
 
-            //Assert();
+            _passagem.Remover(passagem);
+
+            passagem = _passagem.Get("6258082a8b81c01bffe7d99e");
+
+            Assert.Null(passagem);
         }
 
         [Fact]
