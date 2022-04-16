@@ -4,8 +4,6 @@
 
 |-- (#Bancos de dados utilizados: SQL / MONGo.db);
 
-|-- Teste de Performance (DAPPER vs E.FRAMEWORK)
-
 |-- .JWT;
 
 |-- .RabbitMQ;
