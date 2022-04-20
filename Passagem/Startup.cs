@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MicroServicoPassagemAereaAPI.Configuracao;
+using MicroServicoPassagemAereaAPI.Servico;
 using MicroServicoPrecoBaseAPI.Configuraao;
 using MicroServicoPrecoBaseAPI.Servico;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -64,7 +65,7 @@ namespace MicroServicoPassagemAereaAPI
             servico.AddSingleton<IPrecoBaseAPI>(sp =>
                 sp.GetRequiredService<IOptions<PrecoBaseAPI>>().Value);
 
-            servico.AddSingleton<ServicoPrecoBase>();
+            servico.AddSingleton<ServicoPassagem>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
